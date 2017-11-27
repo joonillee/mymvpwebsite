@@ -1,0 +1,14 @@
+{% load i18n %}
+{% trans "Activate account at" %} {{ site.name }}:
+
+Hey There,
+
+Thank you for registering with us!
+Please clink below link to activate your account.
+
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+{% blocktrans %}The above link is valid for {{ expiration_days }} days.{% endblocktrans %}
+
+Joon - My Python Django Project
+

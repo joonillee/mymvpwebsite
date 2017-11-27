@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+{% block content %}
+<hr />
+<p class='lead col-sm-6 col-sm-offset-3 text-align-center'>{% trans "You are now Logged out" %}</p>
+
+<hr/>
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+<p>Need to <a href="{% url 'auth_login' %}">Login</a>?</p>
+</div>
+</div>
+
+{% endblock %}
+</div>

@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+
+<style>
+        {% block style %}
+        .navbar-static-top {
+            margin-bottom: 0px !important;
+        }
+        .jumbotron {
+            background-color:lightslategray;
+            color: #FFF;
+        }
+        {% endblock %}
+</style>
+
+
+{% block jumbotron %}
+<!-- working with jumbotron section, adding row, and working with boostrap grid styling, col-...and etc -->
+{% if not request.user.is_authenticated %}
+<div class="jumbotron">
+        
+<div class="container">
+<div class="row">
+    <div class='col-sm-7'>
+        <h1>MVP Landing Page</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+        <a class="btn btn-lg btn-primary" href="https://www.google.com/" role="button">Join Us &raquo;</a>
+        </p>
+    </div>
+    <div class='col-sm-5'>
+                    
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uD6rzNFNGok" frameborder="0" allowfullscreen></iframe>
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Six_weeks_old_cat_%28aka%29.jpg" class = "img-responsive" /> -->
+        
+    </div>
+ </div>
+ </div>
+ </div>
+ {% endif %}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<h1>You are logged in!</h1>
+
+	{% if queryset %}
+	<h2>Welcome Staff</h2>
+	<table class='table'>
+	{% for instance in queryset %}
+		<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
+		{% if instance.email == "abc@gmail.edu" %}
+		<tr><td>is equal</td></tr>
+		{% endif %}
+	{% endfor %}
+	</table>
+
+	{% endif %}
+
+ {% else %}
+
+<div class="row">
+
+  <div class="col-sm-3 pull-right">
+      <!-- pull-right sends the form to the right side, cool! -->
+      <!-- also using css with blocks next to pull-right  -->
+			<p class='lead' style="text-align:center;"> Sign Up Now</p>
+
+			<form method='POST' action=''>{% csrf_token %}
+			{{ form|crispy }}
+
+			<input class='btn btn-primary btn-block' type='submit' value='Sign Up' />
+
+			</form>
+	
+
+</div>
+
+<div class='col-sm-3'>
+    <p class='lead' style="text-align:center;">Django &amp; Boostrap</p>   
+
+    <br/>
+    <div class='row' style="text-align:center;">
+    <img src="https://avatars1.githubusercontent.com/u/7688503?s=400&v=4" height="150" width="150"/>
+    <!-- <span class="fa-stack fa-5x"> -->
+            <!-- <i class="fa fa-circle-o-notch fa-stack-2x"></i> -->
+            <!-- <i class="fa fa-spinner fa-stack-2x"></i>
+    <i class="fa fa-cogs fa-stack-1x" aria-hidden="true"></i> -->
+    </span>
+</div>
+</div>
+
+<div class='col-sm-3'>
+    <p class='lead' style="text-align:center;">Created for Starters</p>
+        
+            <!-- <i class="fa fa-bolt" aria-hidden="true"></i> </p>   -->
+            <br/><br/>
+    <!-- input font awesome here -->
+    <div class='row' style="text-align:center;">
+    <i style= "color:blue;" class="fa fa-bolt fa-5x" aria-hidden="true"></i> 
+</div>
+</div>
+
+<div class='col-sm-3'>
+    <p class='lead' style="text-align:center;">Always Open Source</p>   
+</div>
+<br/><br/>
+<br/><br/>
+<div class='row' style="text-align:center;">
+
+<span class="fa-stack fa-5x">
+        <i class="fa fa-circle-o-notch fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x"></i>
+      </span>
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+
