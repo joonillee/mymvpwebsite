@@ -16,6 +16,8 @@ installed on your own environment
 + crispyform
 + fontawesome
 + CSS
++ HTML
++ JavaScript
 
 ### Screenshot
 
